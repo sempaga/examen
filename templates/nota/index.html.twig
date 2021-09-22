@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Estudiantes{% endblock %}
+
+{% block body %}
+    <h1>Listado de Estudiante</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Id del Estudiante</th>
+                <th>Estudiante</th>
+                <th>Apellido 1</th>
+                <th>Apellido 2</th>
+                <th>Numero de Cursos</th>
+                <th>Nota media</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notum in notas %}
+            <tr>
+                <td>{{ notum.estudiante.id }}</td>
+                <td>{{ notum.estudiante }}</td>
+                <td>{{ notum.estudiante.apellido1 }}</td>
+                <td>{{ notum.estudiante.apellido2 }}</td>
+                <td>{{ notum.curso }}</td>
+                <td>{{ notum.nota }}</td>
+                
+                <td>
+                    <a href="{{ path('nota_show', {'id': notum.id}) }}">show</a>
+                    <a href="{{ path('nota_edit', {'id': notum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nota_new') }}">Create new</a>
+{% endblock %}
